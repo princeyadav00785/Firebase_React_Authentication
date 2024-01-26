@@ -10,20 +10,26 @@ const Home = () => {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
+        localStorage.removeItem("authToken");
         navigate("/login");
         console.log("Signed out successfully");
       })
       .catch((error) => {
         // An error happened.
+        console.error("Logout error:", error);
       });
   };
+
+  // Check if user is authenticated, otherwise redirect to login
+  const storedToken = localStorage.getItem("authToken");
+  if (!storedToken) {
+    navigate("/login");
+  }
 
   return (
     <>
       <nav>
         <p>Welcome Home</p>
-
         <div>
           <button onClick={handleLogout}>Logout</button>
         </div>

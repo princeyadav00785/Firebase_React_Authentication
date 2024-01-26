@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Firebase";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -9,26 +9,48 @@ const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onLogin = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        setIsLoggedIn(true); // Update login status
+  const storedToken = localStorage.getItem("authToken");
+
+  useEffect(() => {
+    console.log("Checking stored token:", storedToken);
+
+    const checkStoredToken = () => {
+      if (storedToken) {
         navigate("/home");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+        setIsLoggedIn(true);
+      }
+    };
+
+    checkStoredToken();
+  }, [storedToken, navigate, setIsLoggedIn]);
+
+  const onLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      localStorage.setItem("authToken", userCredential.user.accessToken);
+      const user = userCredential.user;
+      console.log(user);
+      setIsLoggedIn(true);
+      navigate("/home");
+    } catch (error) {
+      localStorage.removeItem("authToken");
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    }
   };
 
   return (
     <>
-      <main>
+      <main className="Top">
+        <div className="signup-heading">
+          <h1 className="heading">Login</h1>
+        </div>
         <section>
           <div>
             <p className="heading"> DNS-MANAGER-APP</p>

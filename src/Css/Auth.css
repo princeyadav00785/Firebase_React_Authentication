@@ -1,9 +1,19 @@
 
+.Top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: whitesmoke
+}
+.heading {
+  background-color: #27ae60;
+}
 main {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: whitesmoke
 }
 
 section {
@@ -18,16 +28,9 @@ section {
 h1 {
   text-align: center;
   font-size: 24px;
+  font-weight: bold; 
   color: #fff;
   margin-bottom: 20px;
-}
-.heading {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 20px;
-  /* background-color: #2ecc71; */
   padding: 8px;
   border-radius: 4px;
 }
@@ -78,4 +81,19 @@ p {
 
 .link:hover {
   text-decoration: underline;
+}
+
+.heading {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold; 
+  color: #fff;
+  margin-bottom: 20px;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.signup-heading {
+  text-align: center; 
+  margin-bottom: 20px; 
 }
