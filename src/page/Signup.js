@@ -30,14 +30,14 @@ const Signup = () => {
   };
 
   return (
-    <main className="Top">
+    <main className="Top center-container">
       <div className="signup-heading">
         <h1 className="heading">Signup</h1>
       </div>
       <section>
-        <div>
+        <div className="main-container">
           <div>
-            <h1 className="heading"> DNS-MANAGER-APP </h1>
+            <h1 className="heading"> DNS-APP </h1>
             <form>
               <div>
                 <label htmlFor="email-address">Email </label>

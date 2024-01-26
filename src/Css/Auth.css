@@ -1,99 +1,110 @@
+/* Auth.css */
 
-.Top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: whitesmoke
-}
-.heading {
-  background-color: #27ae60;
-}
-main {
+body {
+  background: linear-gradient(to right, #00c6fb, #005bea);
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: whitesmoke
+  font-family: 'Arial', sans-serif;
 }
 
-section {
-  background-color: #3498db;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 80%;
+main {
+  width: 100%;
   max-width: 400px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-h1 {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold; 
+.signup-heading {
+  background: linear-gradient(to right, #005bea, #00c6fb);
   color: #fff;
-  margin-bottom: 20px;
-  padding: 8px;
-  border-radius: 4px;
+  text-align: center;
+  padding: 20px;
 }
 
 form {
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 label {
   margin-bottom: 8px;
-  color: #fff;
+  color: #333;
 }
 
 input {
-  padding: 8px;
+  padding: 10px;
   margin-bottom: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  width: 100%;
+  font-size: 16px;
 }
 
 button {
-  background-color: #2ecc71;
-  color: white;
-  padding: 10px;
+  background: linear-gradient(to right, #005bea, #00c6fb);
+  color: #fff;
+  padding: 12px;
   border: none;
   border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 button:hover {
-  background-color: #27ae60;
+  background: linear-gradient(to right, #00c6fb, #005bea);
 }
 
-p {
-  text-align: center;
+.button-animation {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.text-sm {
   font-size: 14px;
+  text-align: center;
+  color: #333;
+  margin-top: 10px;
+}
+
+.text-white {
   color: #fff;
 }
 
-.link {
-  color: #2ecc71;
+.text-center {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.text-sm a {
+  color: #00c6fb;
   text-decoration: none;
   font-weight: bold;
 }
 
-.link:hover {
+.text-sm a:hover {
   text-decoration: underline;
 }
 
-.heading {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold; 
-  color: #fff;
-  margin-bottom: 20px;
-  padding: 8px;
-  border-radius: 4px;
-}
-
-.signup-heading {
-  text-align: center; 
-  margin-bottom: 20px; 
+/* Add media queries for responsiveness */
+@media screen and (max-width: 600px) {
+  main {
+    width: 90%;
+  }
 }

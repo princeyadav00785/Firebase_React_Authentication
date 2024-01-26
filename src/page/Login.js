@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../Firebase";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../Css/Auth.css";
@@ -12,8 +16,6 @@ const Login = ({ setIsLoggedIn }) => {
   const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
-    console.log("Checking stored token:", storedToken);
-
     const checkStoredToken = () => {
       if (storedToken) {
         navigate("/home");
@@ -42,6 +44,21 @@ const Login = ({ setIsLoggedIn }) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
+    }
+  };
+
+  const onGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+      localStorage.setItem("authToken", userCredential.user.accessToken);
+      const user = userCredential.user;
+      console.log(user);
+      setIsLoggedIn(true);
+      navigate("/home");
+    } catch (error) {
+      localStorage.removeItem("authToken");
+      console.error("Google Sign-In Error:", error);
     }
   };
 
@@ -83,6 +100,12 @@ const Login = ({ setIsLoggedIn }) => {
               <div>
                 <button type="submit" onClick={onLogin}>
                   Login
+                </button>
+              </div>
+
+              <div>
+                <button type="button" onClick={onGoogleLogin}>
+                  Login with Google
                 </button>
               </div>
             </form>
